@@ -1,31 +1,34 @@
 #include <iostream>
 using namespace std;
-
-#define SIZE 5
-int buffer[SIZE];
-int topIndex = -1;
-
-void push(int ele)
+class Stack 
 {
-    if(topIndex == SIZE - 1)
-        cout <<"Stack Overflow \n";
-    else
+    const static int  SIZE = 5;
+    int buffer[SIZE];
+    int topIndex = -1;
+public :
+    void push(int ele)
     {
-        topIndex++;
-        buffer[topIndex] = ele;
+        if(topIndex == SIZE - 1)
+            cout <<"Stack Overflow \n";
+        else
+        {
+            topIndex++;
+            buffer[topIndex] = ele;
+        }
     }
-}
-int pop()
-{
-    if(topIndex == -1)
+    int pop()
     {
-        cout <<"Stack Underflow \n";
-        return -1;
+        if(topIndex == -1)
+        {
+            cout <<"Stack Underflow \n";
+            return -1;
+        }
+        return buffer[topIndex--];
     }
-    return buffer[topIndex--];
-}
+};
 int main()
 {
+    Stack s;
     int ch;
     int ele;
     for(;;)
@@ -36,9 +39,9 @@ int main()
         {
         case 1 : cout <<"Enter the element to insert : ";
                  cin >> ele;
-                 push(ele);
+                 s.push(ele);
                  break;
-        case 2 : cout << pop() << endl;
+        case 2 : cout << s.pop() << endl;
                  break;
         default : return 0;
         }
